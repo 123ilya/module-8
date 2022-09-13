@@ -1,1 +1,1 @@
-a:4:{s:5:"title";s:4:"gope";s:4:"text";s:14:"morz b solntce";s:6:"author";s:4:"ilya";s:9:"published";s:19:"2022-09-13 06:03:56";}
+a:4:{s:5:"title";s:4:"gope";s:4:"text";s:16:"morz bbb solntce";s:6:"author";s:4:"ilya";s:9:"published";s:19:"2022-09-13 07:42:20";}

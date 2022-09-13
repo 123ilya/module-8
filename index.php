@@ -34,7 +34,25 @@ class TelegraphText
         $serializedPost = serialize($post);
         file_put_contents($this->slug, $serializedPost);
     }
+
+    //Создаю метод для загрузки текста из файла
+    public function loadText()
+    {
+        //Десереализую строку, сохраненную в файле
+        $loadedPost = unserialize(file_get_contents($this->slug));
+        //Присваиваю полям класса, значения полученного массива
+        if (filesize($this->slug) !== 0) {
+            $this->title = $loadedPost['title'];
+            $this->text = $loadedPost['text'];
+            $this->author = $loadedPost['author'];
+            $this->published = $loadedPost['published'];
+            echo $this->text;
+        }
+    }
 }
 
 $aaa = new TelegraphText('ilya', '.\ttt.txt');
-$aaa->storeText('gope', 'morz b solntce');
+//$aaa->storeText('gope', 'morz b solntce');
+//$bbb = unserialize(file_get_contents('.\ttt.txt'));
+//var_dump($bbb);
+$aaa->loadText();
