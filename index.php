@@ -1,21 +1,13 @@
 <?php
 
-// Получаем содержимое файла
-//$g = file_get_contents('.\test.txt');
-//Изменяем содержимое файла
-//file_put_contents('.\test.txt', 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
-//echo $g;
-//Проверяем сущуществование файла или каталога
-//echo file_exists('.\test.txt');
-//-----------------------------------------------------------------------------------------------------------
-// Создаю класс TelegraphText и добавляю в него соответствующие поля
+
 class TelegraphText
 {
     //Добавляю поля
     public $text, $title, $author, $published, $slug;
 
 //Добавляю конструктор. При создании объекта ,конструктор инициализирует, указанные в нём переменные
-    public function __construct($author, $slug)
+    public function __construct(string $author, string $slug)
     {
         $this->author = $author;
         $this->slug = $slug;
@@ -23,11 +15,11 @@ class TelegraphText
     }
 
 //Создаю метод, для записи текста в файл
-    public function storeText($title, $text)
+    public function storeText()
     {
         $post = [
-            'title' => $title,
-            'text' => $text,
+            'title' => $this->title,
+            'text' => $this->text,
             'author' => $this->author,
             'published' => $this->published
         ];
@@ -46,13 +38,28 @@ class TelegraphText
             $this->text = $loadedPost['text'];
             $this->author = $loadedPost['author'];
             $this->published = $loadedPost['published'];
-            echo $this->text;
+//            echo $this->text;
+            return $this->text;
         }
+    }
+
+    //Создаю метод, для редактирование текста и заголовка
+    public function editText(string $title, string $text)
+    {
+        $this->title = $title;
+        $this->text = $text;
+//        echo $this->title.PHP_EOL;
+//        echo $this->text.PHP_EOL;
     }
 }
 
-$aaa = new TelegraphText('ilya', '.\ttt.txt');
-//$aaa->storeText('gope', 'morz b solntce');
-//$bbb = unserialize(file_get_contents('.\ttt.txt'));
-//var_dump($bbb);
-$aaa->loadText();
+//Создаю объект класса TelegraphText
+$obj = new TelegraphText('ilya', '.\obj.txt');
+var_dump($obj);
+//Вызываю метод 'editText'
+$obj->editText('new story', 'klsjhklsjfhakjhfakjdhkljashkajshafs');
+var_dump($obj);
+//Вызываю метод 'storeText'
+$obj->storeText();
+//Вызываю метод 'LoadText' и вывожу возвращеное им значение (text)
+echo $obj->loadText();
