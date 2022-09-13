@@ -22,18 +22,19 @@ class TelegraphText
         $this->published = date('Y-m-d H:i:s');
     }
 
+//Создаю метод, для записи текста в файл
     public function storeText($title, $text)
     {
-        $arr = [
+        $post = [
             'title' => $title,
             'text' => $text,
             'author' => $this->author,
             'published' => $this->published
         ];
-        foreach ($arr as $item) {
-            echo $item . PHP_EOL;
-        }
+        $serializedPost = serialize($post);
+        file_put_contents($this->slug, $serializedPost);
     }
 }
-$aaa = new TelegraphText('ilya','ttt');
-$aaa->storeText('gope','morz b solntce');
+
+$aaa = new TelegraphText('ilya', '.\ttt.txt');
+$aaa->storeText('gope', 'morz b solntce');
