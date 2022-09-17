@@ -49,7 +49,9 @@ class TelegraphText
 
 $telegraphText1 = new TelegraphText('ilya', '.\obj.txt');
 var_dump($telegraphText1);
+
 $telegraphText1->editText('new story', 'klsjhklsjfhakjhfakjdhkljashkajshafs');
 var_dump($telegraphText1);
+
 $telegraphText1->storeText();
 echo $telegraphText1->loadText();
